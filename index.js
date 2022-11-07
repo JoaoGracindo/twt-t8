@@ -8,11 +8,7 @@ app.use(express.json())
 const users = [];
 let avatar;
 const tweets = [
-    {
-        username: "bobesponja",
-        avatar: "https://super.abril.com.br/wp-content/uploads/2020/09/04-09_gato_SITE.jpg?quality=70&strip=info",
-        tweet: "eu amo o hub"
-    }
+
 ];
 
 
@@ -24,7 +20,7 @@ app.get("/tweets", (req, res) => {
         if(i < 0){
             break
         }
-        feed.push(tweets[i])
+        feed.push({...tweets[i], avatar})
     }
 
 
@@ -33,17 +29,17 @@ app.get("/tweets", (req, res) => {
 
 app.post("/tweets", (req, res) =>{
     const newTweet = req.body;
-    res.send(newTweet)
+    res.send("OK")
 
-    tweets.push({...newTweet, avatar})
-    console.log(tweets)
+    tweets.push(newTweet)
+
 
 });
 
 app.post("/sign-up", (req, res) =>{
     const newUser = req.body;
     avatar = newUser.avatar;
-    res.send(newUser)
+    res.send("OK")
 
     users.push(newUser)
 
