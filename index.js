@@ -6,7 +6,6 @@ app.use(cors())
 app.use(express.json())
 
 const users = [];
-let avatar;
 const tweets = [
 
 ];
@@ -20,6 +19,8 @@ app.get("/tweets", (req, res) => {
         if(i < 0){
             break
         }
+        let user = users.find(object => object.username === tweets[i].username);
+        let avatar = user.avatar
         feed.push({...tweets[i], avatar})
     }
 
@@ -38,7 +39,6 @@ app.post("/tweets", (req, res) =>{
 
 app.post("/sign-up", (req, res) =>{
     const newUser = req.body;
-    avatar = newUser.avatar;
     res.send("OK")
 
     users.push(newUser)
